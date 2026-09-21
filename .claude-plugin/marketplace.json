@@ -1,0 +1,15 @@
+{
+  "name": "awraiter",
+  "description": "Agent skills for working with AwrAIter: Telegram channels you administer — analytics, drafts from the channel's own sources, content plans, scheduled publishing — over MCP or the REST v1 API.",
+  "owner": {
+    "name": "AwrAIter",
+    "url": "https://awraiter.ai"
+  },
+  "plugins": [
+    {
+      "name": "awraiter",
+      "description": "Full context on the AwrAIter MCP server and REST v1: the 25 tools, authentication, the draft → check → preview → schedule workflow, and where the live docs are",
+      "source": "./"
+    }
+  ]
+}

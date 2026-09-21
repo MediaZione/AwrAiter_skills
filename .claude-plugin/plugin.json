@@ -1,0 +1,12 @@
+{
+  "name": "awraiter",
+  "version": "0.1.0",
+  "description": "Agent skills for working with AwrAIter: Telegram channels over MCP or REST v1.",
+  "author": {
+    "name": "AwrAIter",
+    "url": "https://awraiter.ai"
+  },
+  "homepage": "https://awraiter.ai/mcp-server/",
+  "repository": "https://github.com/MediaZione/awraiter-skills",
+  "license": "MIT"
+}
