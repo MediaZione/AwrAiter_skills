@@ -2,7 +2,7 @@
 
 Agent skills for working with [AwrAIter](https://awraiter.ai): Telegram channels you administer — analytics, drafts from the channel's own sources, content plans, scheduled publishing — over the [MCP server](https://awraiter.ai/mcp-server/) or the REST v1 API. No userbot: no phone number, no login code.
 
-Read [SKILL.md on GitHub](skills/awraiter/SKILL.md) or fetch the [raw Markdown](https://raw.githubusercontent.com/MediaZione/awraiter-skills/main/skills/awraiter/SKILL.md).
+Read [SKILL.md on GitHub](skills/awraiter/SKILL.md) or fetch the [raw Markdown](https://raw.githubusercontent.com/MediaZione/AwrAiter_skills/main/skills/awraiter/SKILL.md).
 
 [Русская версия](README.ru.md)
 
@@ -11,14 +11,14 @@ Read [SKILL.md on GitHub](skills/awraiter/SKILL.md) or fetch the [raw Markdown](
 ### Claude Code plugin
 
 ```bash
-claude plugin marketplace add MediaZione/awraiter-skills
+claude plugin marketplace add MediaZione/AwrAiter_skills
 claude plugin install awraiter@awraiter
 ```
 
 ### Other agents via skills.sh
 
 ```bash
-npx skills add MediaZione/awraiter-skills --skill awraiter
+npx skills add MediaZione/AwrAiter_skills --skill awraiter
 ```
 
 Select your agent when prompted. Installation is project-local by default; add `-g` to install globally.

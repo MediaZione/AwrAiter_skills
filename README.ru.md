@@ -9,14 +9,14 @@
 Claude Code:
 
 ```bash
-claude plugin marketplace add MediaZione/awraiter-skills
+claude plugin marketplace add MediaZione/AwrAiter_skills
 claude plugin install awraiter@awraiter
 ```
 
 Другие агенты:
 
 ```bash
-npx skills add MediaZione/awraiter-skills --skill awraiter
+npx skills add MediaZione/AwrAiter_skills --skill awraiter
 ```
 
 Вручную: скопируйте `skills/awraiter/SKILL.md` в папку скиллов агента (для Claude Code — `~/.claude/skills/awraiter/SKILL.md`).
