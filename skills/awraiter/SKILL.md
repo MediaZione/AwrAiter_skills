@@ -149,8 +149,8 @@ Names are identical over MCP and REST. Scope in brackets.
   fresh, unused sources — raw material to write from) [read], `check_uniqueness` (`text`)
   [read], `score_post` (`text` or `postId`) [read], `preview_post` [read].
 - **Publishing** — `create_post_from_text` (`channelId`, `body`, optional `title`,
-  `imageUrls`/`videoUrls` as public direct links — all-or-nothing, `deslop` to strip
-  AI-tell typography, `planItemId` to fill a plan slot) [full], `schedule_post`
+  `imageUrls`/`videoUrls`/`audioUrls` as public direct links — all-or-nothing, `deslop` to
+  strip AI-tell typography, `planItemId` to fill a plan slot) [full], `schedule_post`
   (`postId`, optional `publishAt` ISO + `zone`; omit to publish now) [full],
   `cancel_scheduled_post` [full].
 - **Content plans** — `get_content_plan` [read], `create_content_plan` [full],
@@ -161,8 +161,21 @@ Names are identical over MCP and REST. Scope in brackets.
 - **Autopilot** — `set_autopilot_policy` [full]: `manual` / `streak` / `auto` approval of
   agent-made posts. Leave it alone unless the user asks.
 - **Playbooks** — `get_playbook` (`task`: `analyze`, `create_plan`, `fill`, `improve`,
-  `rewrite`) [read] returns the step-by-step operator workflow for that task, written by
+  `rewrite`, `team`) [read] returns the step-by-step operator workflow for that task, written by
   the product. **Call it first for any multi-step job** rather than improvising the order.
+
+## Attach media
+
+- Links must download the file itself, not open a page. Dropbox: change `dl=0` to `dl=1`.
+  Google Drive: `https://drive.google.com/uc?export=download&id=<file id>`, shared by link.
+  A file the user drops into this chat does not reach the server — ask for a link.
+- Up to 10 images (JPG/PNG/WebP), 3 videos, or 5 tracks (MP3/M4A/OGG/WAV/FLAC, ≤49 MB).
+- Tracks (`audioUrls`) go out as music; several form an album with the post text as the
+  caption. They cannot share a post with images or videos — make a separate post.
+- `audioUrls` needs `rightsConfirmed: true`. Ask the user whether they hold the rights to
+  publish those tracks; set it only on a clear yes. Never assume.
+- A YouTube or SoundCloud page fails with `media_download_failed`. Tell the user to use
+  **Add media → Download audio by URL** in the AwrAIter editor instead.
 
 ## Write a post the way the product expects
 
