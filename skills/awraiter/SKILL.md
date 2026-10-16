@@ -141,7 +141,9 @@ Names are identical over MCP and REST. Scope in brackets.
   `channelId` from it.
 - **Analytics** — `get_channel_stats` (`channelId`, `periodDays` 1–90) [read],
   `get_channel_insights` (what works for *this* audience against its own 30-day median)
-  [read], `get_recent_posts` [read], `search_channel_content` (semantic, over the
+  [read], `review_posts` (recent posts, or one `postId`/`tgMsgId`, against this channel's
+  posts at the same age: `above` / `on_par` / `below` / `too_early`) [read],
+  `get_recent_posts` [read], `search_channel_content` (semantic, over the
   channel's own posts and sources) [read], `deep_analyze` (`channelIds`, `mode`
   `analyze`|`compare`) [full] — **the one tool that spends the team's AI credits**;
   ask before calling it.
@@ -156,8 +158,14 @@ Names are identical over MCP and REST. Scope in brackets.
 - **Content plans** — `get_content_plan` [read], `create_content_plan` [full],
   `find_free_slot` [read].
 - **Channel memory** — `get_channel_memory` (brand brief + banlist: what keeps posts
-  sounding like the channel, not like a model) [read], `set_brand_brief` [full],
-  `add_banlist_entry` / `remove_banlist_entry` [full].
+  sounding like the channel, not like a model; plus `learnings`, the channel's journal of
+  hypotheses and proven learnings) [read], `set_brand_brief` [full],
+  `add_banlist_entry` / `remove_banlist_entry` [full], `add_channel_learning` /
+  `remove_channel_learning` [full].
+- **Assist mode** — `set_assist_mode` (`quiet` | `normal` | `coach`) [full]: how much the user
+  wants to be coached, for all channels. Follow it; in `quiet` give no unsolicited tips. Warnings
+  (banned words, repeats, Telegram limits, wrong channel or time, failed checks) come in every
+  mode.
 - **Autopilot** — `set_autopilot_policy` [full]: `manual` / `streak` / `auto` approval of
   agent-made posts. Leave it alone unless the user asks.
 - **Playbooks** — `get_playbook` (`task`: `onboarding`, `analyze`, `create_plan`, `fill`,
@@ -181,8 +189,9 @@ Names are identical over MCP and REST. Scope in brackets.
 
 ## Write a post the way the product expects
 
-1. `get_channel` + `get_channel_memory` — language, brand brief, banlist. Write in the
-   channel's language and tone; never use a banlisted word.
+1. `get_channel` + `get_channel_memory` — language, brand brief, banlist, learnings. Write in
+   the channel's language and tone; never use a banlisted word; follow the learnings and say
+   when a draft tests a hypothesis.
 2. `draft_from_sources` — write from the channel's own fresh sources, not from memory.
    Facts only from the source; no invented numbers, names, dates.
 3. `check_uniqueness` on the draft — a near-duplicate of an existing post or a copy of the
@@ -195,6 +204,13 @@ Names are identical over MCP and REST. Scope in brackets.
    outward-facing action on a real channel.
 
 Read tokens cannot do steps 5–6; say so instead of failing repeatedly.
+
+## Learn from what went out
+
+About a day after a post, or once a week, call `review_posts`. Compare the `above` posts with
+the `below` ones (topic, first line, length, format, media, time) and record what repeats with
+`add_channel_learning`: `kind: hypothesis` after one or two posts, `kind: learning` once it held
+on three or more. Remove an entry that stopped holding with `remove_channel_learning`.
 
 ## Guardrails
 
