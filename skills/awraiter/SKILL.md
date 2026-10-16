@@ -160,9 +160,11 @@ Names are identical over MCP and REST. Scope in brackets.
   `add_banlist_entry` / `remove_banlist_entry` [full].
 - **Autopilot** — `set_autopilot_policy` [full]: `manual` / `streak` / `auto` approval of
   agent-made posts. Leave it alone unless the user asks.
-- **Playbooks** — `get_playbook` (`task`: `analyze`, `create_plan`, `fill`, `improve`,
-  `rewrite`, `team`) [read] returns the step-by-step operator workflow for that task, written by
-  the product. **Call it first for any multi-step job** rather than improvising the order.
+- **Playbooks** — `get_playbook` (`task`: `onboarding`, `analyze`, `create_plan`, `fill`,
+  `improve`, `rewrite`, `team`) [read] returns the step-by-step operator workflow for that task,
+  written by the product. **Call it first for any multi-step job** rather than improvising the
+  order. `onboarding` is the first session with a channel (history, audience, brief, rubrics and
+  rhythm, interlinking posts, plan); offer it when a channel has no brand brief yet.
 
 ## Attach media
 
